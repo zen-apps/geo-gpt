@@ -6,7 +6,7 @@ import os
 from setuptools import setup, find_packages
 
 # Read the contents of README file
-with open(os.path.join(os.path.dirname(__file__), "README.txt"), "r") as f:
+with open(os.path.join(os.path.dirname(__file__), "README.md"), "r") as f:
     readme = f.read()
 
 # Define package requirements
@@ -33,10 +33,10 @@ requirements = [
 
 setup(
     name="geo-gpt",
-    version="0.1.3",
+    version="0.1.6",
     description="Enhanced geocoding with pgeocode and LLM fallback",
     long_description=readme,
-    long_description_content_type="text/markdown",  # README.txt is actually markdown content
+    long_description_content_type="text/markdown",
     author="Josh Janzen",
     author_email="joshjanzen@gmail.com",
     url="https://github.com/zen-apps/geo-gpt",
