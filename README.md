@@ -44,7 +44,7 @@ GeoGPT requires environment variables to be set for LLM access. Follow these ste
    ```
    LLM_PROVIDER=openai  # Choose: openai, google, anthropic, deepseek
    OPENAI_API_KEY=your-api-key-here
-   LLM_MODEL_OPENAI=gpt-4o-mini  # Optional, will use default if not specified
+   LLM_MODEL_OPENAI=gpt-4o  # Optional, will use default if not specified
    ```
 
 3. **Alternative:** Set environment variables directly:
@@ -52,17 +52,17 @@ GeoGPT requires environment variables to be set for LLM access. Follow these ste
    # For OpenAI
    export LLM_PROVIDER=openai
    export OPENAI_API_KEY=your-api-key-here
-   export LLM_MODEL_OPENAI=gpt-4o-mini
+   export LLM_MODEL_OPENAI=gpt-4o
    
    # For Google
    export LLM_PROVIDER=google
    export GOOGLE_API_KEY=your-api-key-here
-   export LLM_MODEL_GOOGLE=gemini-1.5-pro
+   export LLM_MODEL_GOOGLE=gemini-2.0-flash-exp
    
    # For Anthropic
    export LLM_PROVIDER=anthropic
    export ANTHROPIC_API_KEY=your-api-key-here
-   export LLM_MODEL_ANTHROPIC=claude-3-5-sonnet-latest
+   export LLM_MODEL_ANTHROPIC=claude-3-7-sonnet-latest
    
    # For DeepSeek
    export LLM_PROVIDER=deepseek
@@ -86,7 +86,7 @@ load_dotenv()  # Will look for .env in current directory
 # Or set them directly (better for production)
 os.environ["LLM_PROVIDER"] = "openai"
 os.environ["OPENAI_API_KEY"] = "your-api-key-here"
-os.environ["LLM_MODEL_OPENAI"] = "gpt-4o-mini"  # Optional
+os.environ["LLM_MODEL_OPENAI"] = "gpt-4o"  # Optional
 
 # Now import and use the package
 from geo_gpt import GeoCoder
@@ -188,7 +188,7 @@ For geocoding with LLM fallback, you MUST set:
 3. Model name for your chosen provider (optional, defaults provided):
    - `LLM_MODEL_OPENAI`: OpenAI model (default: "gpt-4o")
    - `LLM_MODEL_GOOGLE`: Google model (default: "gemini-2.0-flash-exp")
-   - `LLM_MODEL_ANTHROPIC`: Anthropic model (default: "claude-3-5-sonnet-latest")
+   - `LLM_MODEL_ANTHROPIC`: Anthropic model (default: "claude-3-7-sonnet-latest")
    - `LLM_MODEL_DEEPSEEK`: DeepSeek model (default: "deepseek-chat")
 
 ## Troubleshooting
