@@ -14,6 +14,7 @@ from dotenv import load_dotenv
 
 logger = logging.getLogger(__name__)
 
+
 def get_llm(provider: Optional[str] = None):
     """
     Returns an LLM instance based on the provider.
@@ -38,7 +39,7 @@ def get_llm(provider: Optional[str] = None):
     # If no provider specified, get from environment or default to OpenAI
     if provider is None:
         provider = os.getenv("LLM_PROVIDER", "openai")
-    
+
     logger.info(f"Initializing LLM with provider: {provider}")
 
     if provider == "google":
@@ -47,52 +48,52 @@ def get_llm(provider: Optional[str] = None):
         api_key = os.getenv("GOOGLE_API_KEY")
         if not api_key:
             logger.warning("No GOOGLE_API_KEY found in environment variables")
-            
+
         llm = ChatGoogleGenerativeAI(
             model=MODEL,
             temperature=0.0,
         )
         logger.info(f"Initialized Google LLM with model: {MODEL}")
-        
+
     elif provider == "anthropic":
-        MODEL = os.getenv("LLM_MODEL_ANTHROPIC", "claude-3-5-sonnet-latest")
+        MODEL = os.getenv("LLM_MODEL_ANTHROPIC", "claude-3-7-sonnet-latest")
         # Check for API key
         api_key = os.getenv("ANTHROPIC_API_KEY")
         if not api_key:
             logger.warning("No ANTHROPIC_API_KEY found in environment variables")
-            
+
         llm = ChatAnthropic(
             model=MODEL,
             temperature=0.0,
         )
         logger.info(f"Initialized Anthropic LLM with model: {MODEL}")
-        
+
     elif provider == "deepseek":
         MODEL = os.getenv("LLM_MODEL_DEEPSEEK", "deepseek-chat")
         # Check for API key
         api_key = os.getenv("DEEPSEEK_API_KEY")
         if not api_key:
             logger.warning("No DEEPSEEK_API_KEY found in environment variables")
-            
+
         llm = ChatDeepSeek(
             model=MODEL,
             temperature=0.0,
         )
         logger.info(f"Initialized DeepSeek LLM with model: {MODEL}")
-        
+
     elif provider == "openai":  # Default to OpenAI
         MODEL = os.getenv("LLM_MODEL_OPENAI", "gpt-4o")
         # Check for API key
         api_key = os.getenv("OPENAI_API_KEY")
         if not api_key:
             logger.warning("No OPENAI_API_KEY found in environment variables")
-            
+
         llm = ChatOpenAI(
             model=MODEL,
             temperature=0.0,
         )
         logger.info(f"Initialized OpenAI LLM with model: {MODEL}")
-        
+
     else:
         raise ValueError(f"Unsupported LLM provider: {provider}")
 

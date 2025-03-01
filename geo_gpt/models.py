@@ -3,7 +3,16 @@ Data models for GeoGPT
 """
 
 from typing import Optional
-from langchain_core.pydantic_v1 import BaseModel, Field
+try:
+    # Try to import from pydantic directly first
+    from pydantic import BaseModel, Field
+except ImportError:
+    # Fall back to pydantic.v1 for compatibility
+    try:
+        from pydantic.v1 import BaseModel, Field
+    except ImportError:
+        # Last resort, use langchain's import (deprecated but still works)
+        from langchain_core.pydantic_v1 import BaseModel, Field
 
 
 class GeoLocation(BaseModel):

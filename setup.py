@@ -10,8 +10,15 @@ with open(os.path.join(os.path.dirname(__file__), "README.txt"), "r") as f:
     readme = f.read()
 
 # Define package requirements
+import sys
+
+if sys.version_info >= (3, 10):
+    pgeocode_req = "pgeocode>=0.6.0"
+else:
+    pgeocode_req = "pgeocode>=0.4.1,<0.5.0"
+
 requirements = [
-    "pgeocode>=0.6.0",
+    pgeocode_req,
     "pandas>=1.0.0",
     "numpy>=1.18.0",
     "langchain>=0.1.0",
@@ -26,10 +33,10 @@ requirements = [
 
 setup(
     name="geo-gpt",
-    version="0.1.0",
+    version="0.1.3",
     description="Enhanced geocoding with pgeocode and LLM fallback",
     long_description=readme,
-    long_description_content_type="text/plain",  # Changed from markdown to plain text since README.txt is plain text
+    long_description_content_type="text/markdown",  # README.txt is actually markdown content
     author="Josh Janzen",
     author_email="joshjanzen@gmail.com",
     url="https://github.com/zen-apps/geo-gpt",
@@ -44,12 +51,14 @@ setup(
         "Intended Audience :: Developers",
         "Intended Audience :: Science/Research",
         "License :: OSI Approved :: MIT License",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
         "Topic :: Scientific/Engineering :: GIS",
         "Topic :: Scientific/Engineering :: Artificial Intelligence",
     ],
-    python_requires=">=3.10",
+    python_requires=">=3.8",
     entry_points={
         "console_scripts": [
             "geo-gpt=geo_gpt.cli:main",
