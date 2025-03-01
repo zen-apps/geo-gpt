@@ -33,7 +33,7 @@ requirements = [
 
 setup(
     name="geo-gpt",
-    version="0.1.1",
+    version="0.1.3",
     description="Enhanced geocoding with pgeocode and LLM fallback",
     long_description=readme,
     long_description_content_type="text/markdown",  # README.txt is actually markdown content
