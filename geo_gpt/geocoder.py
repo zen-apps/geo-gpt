@@ -280,6 +280,14 @@ class GeoCoder:
         # Get the result from the LLM
         try:
             result = llm_with_structured_output.invoke(prompt_filled_in)
+            
+            # Modify the formatted address to indicate LLM usage
+            original_address = result.formatted_address
+            if original_address:
+                result.formatted_address = f"{original_address} [LLM]"
+            else:
+                result.formatted_address = "[LLM]"
+                
             return result
         except Exception as e:
             logger.error(f"Error in LLM geocoding: {e}")
@@ -294,7 +302,7 @@ class GeoCoder:
                 latitude=0.0,
                 longitude=0.0,
                 accuracy="low",
-                formatted_address=None
+                formatted_address="[LLM Error]"
             )
     
     def _iso2_to_iso3_country(self, iso2_code: str) -> str:
