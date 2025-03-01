@@ -224,6 +224,8 @@ class GeoCoder:
                 
                 # Filter by state if provided
                 if state_name and not results.empty:
+                    # Convert state_name column to string first to avoid 'float has no attribute lower' error
+                    results['state_name'] = results['state_name'].astype(str)
                     state_filtered = results[
                         results['state_name'].str.contains(state_name, case=False, na=False)
                     ]

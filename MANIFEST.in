@@ -1,4 +1,4 @@
-include README.txt
+include README.md
 include LICENSE
 include .env.template
 include pyproject.toml
